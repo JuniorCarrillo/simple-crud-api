@@ -101,8 +101,7 @@ func CharacterUpdateById(ctx echo.Context) error {
 
 	msg := fmt.Sprintf("The element with the id '%s' has been updated successfully.", response.ID)
 	return ctx.JSON(http.StatusOK, dtos.Response{
-		Message:   &msg,
-		Character: response,
+		Message: &msg,
 	})
 }
 
