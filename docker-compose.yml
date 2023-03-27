@@ -1,15 +1,44 @@
 version: '3.3'
 
 services:
-  mongo:
+  db:
     image: mongo:4.4
+    container_name: simple-crud-api_db
+    networks:
+      - simple-crud-api_network
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
+    restart: unless-stopped
     ports:
       - '${MONGO_PORT}:27017'
     volumes:
       - mongo_data:/data/db
 
+  app:
+    image: simple-crud-api
+    container_name: simple-crud-api_app
+    networks:
+      - simple-crud-api_network
+    build:
+      context: .
+    depends_on:
+      - db
+    environment:
+      - MONGO_COLLECTION=${MONGO_COLLECTION}
+      - MONGO_USERNAME=${MONGO_USERNAME}
+      - MONGO_PASSWORD=${MONGO_PASSWORD}
+      - MONGO_PORT=${MONGO_PORT}
+      - MONGO_HOST=db
+      - X_API_KEY=${X_API_KEY}
+    restart: unless-stopped
+    ports:
+      - '${HTTP_PORT}:3000'
+    volumes:
+      - app_data:/app
+
 volumes:
   mongo_data: {}
+  app_data: {}
+networks:
+  simple-crud-api_network:

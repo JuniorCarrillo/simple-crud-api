@@ -13,6 +13,11 @@ install:
 	go mod download && go mod verify
 	@echo "Dependencies installed $(OK_STRING)"
 
+install-example: install
+	@echo "Copying example environment variables..."
+	cp .env.example .env
+	@echo "Copied environment variables $(OK_STRING)"
+
 run-db:
 	@echo "Starting database..."
 	docker compose up -d
@@ -30,5 +35,16 @@ build-docker:
 
 run-docker:
 	@echo "Starting in docker..."
-	docker run -dp 3000:3000 simple-crud-api
+	docker compose up -d
+	@echo "Application running in docker $(OK_STRING)"
+
+stop-docker:
+	@echo "Stopping in docker..."
+	docker compose down
+	@echo "Application stopping in docker $(OK_STRING)"
+
+
+run-example: build-docker
+	@echo "Starting in docker..."
+	docker compose up -d
 	@echo "Application running in docker $(OK_STRING)"
