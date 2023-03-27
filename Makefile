@@ -43,7 +43,6 @@ stop-docker:
 	docker compose down
 	@echo "Application stopping in docker $(OK_STRING)"
 
-
 run-example: build-docker
 	@echo "Starting in docker..."
 	docker compose up -d
