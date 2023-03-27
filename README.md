@@ -114,6 +114,20 @@ make run-example
 curl http://localhost:3000/
 ```
 
+## Install in docker container
+
+```
+docker run -dp 3000:3000 \
+--name simple-crud-api \
+-e MONGO_USERNAME=root \
+-e MONGO_PASSWORD=123456 \
+-e MONGO_HOST=localhost \
+-e MONGO_PORT=27017 \
+-e MONGO_COLLECTION=simple-crud-api \
+-e X_API_KEY=es123456 \
+simple-crud-api
+```
+
 ## Use
 
 Here, the available endpoints or routes within the REST service are listed. It should be noted that to use it, you must have the `x-api-key` header (available in the environment variables or the `.env` file) for the routes under the pattern `/api/v1/`, which have a security middleware.
