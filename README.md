@@ -116,6 +116,12 @@ curl http://localhost:3000/
 
 ## Install in docker container
 
+1. Pull image
+```
+docker pull ghcr.io/juniorcarrillo/simple-crud-api:release
+```
+
+2. Run application
 ```
 docker run -dp 3000:3000 \
 --name simple-crud-api \
