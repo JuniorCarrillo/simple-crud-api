@@ -89,29 +89,60 @@ require (
 )
 ```
 
-## Install
+## Install (local)
 
-1. Clonar el repositorio
+1. Clone the repository
 ```
 git clone https://github.com/JuniorCarrillo/simple-crud-api.git
 ```
 
-3. Instalar dependencias
+2. Install dependencies
 
 ```
 go mod download
 ```
 
-4. Configurar variables de entorno
+3. Setting environment variables
 
 ```
 cp .env.example .env
 ```
 
-5. Ejecutar aplicación
+4. Run application
 
 ```
 go run main.go
+```
+
+## Install (dockerize)
+
+1. Clone the repository
+```
+git clone https://github.com/JuniorCarrillo/simple-crud-api.git
+```
+
+2. Install dependencies
+
+```
+go mod download
+```
+
+3. Setting environment variables
+
+```
+cp .env.example .env
+```
+
+4. Build application
+
+```
+docker build -t simple-crud-api .
+```
+
+5. Run application
+
+```
+docker run -dp 3000:3000 simple-crud-api
 ```
 
 ## Use
