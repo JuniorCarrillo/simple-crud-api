@@ -12,10 +12,14 @@ install:
 	@echo "Installing dependencies..."
 	go mod download
 
-start-db:
+db:
 	@echo "Starting database $(OK_STRING)"
 	docker compose up -d
 
-run-api:
+api:
 	@echo "Starting API..."
 	go run main.go
+
+dockerize:
+	@echo "Starting dockerize $(OK_STRING)"
+	docker build -t simple-crud-api .
